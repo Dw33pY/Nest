@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nest | The Art of Staying</title>
+    <meta name="description" content="Nest is the premier collection of verified, design-led Airbnb stays. We curate experiences.">
+    <meta property="og:title" content="Nest | The Art of Staying">
+    <meta property="og:image" content="https://picsum.photos/seed/nest-og/1200/630">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="scroll-locked">
+
+    <!-- Preloader (Homepage Only) -->
+    <div class="preloader" id="preloader">
+        <div class="loader-content">
+            <div class="loader-logo">Nest<span>.</span></div>
+            <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <!-- Page Curtain (Starts hidden on index.html) -->
+    <div class="page-curtain" id="page-curtain"></div>
+    <div class="grain-overlay"></div>
+
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+    <div class="scroll-progress" id="progress-bar"></div>
+
+    <nav class="navbar-wrapper">
+        <div class="navbar-pill" id="navbar">
+            <a href="index.html" class="nav-logo transition-link">Nest<span>.</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active transition-link">Journal</a>
+                <a href="about.html" class="nav-link transition-link">Story</a>
+                <a href="services.html" class="nav-link transition-link">Expertise</a>
+                <a href="contact.html" class="nav-link transition-link">Contact</a>
+            </div>
+        </div>
+        <div class="burger" id="burger"><div class="burger-shape"><span class="burger-line"></span><span class="burger-line"></span></div></div>
+    </nav>
+
+    <div class="mobile-menu-overlay" id="mobile-menu">
+        <div class="mobile-menu-bg">NEST</div>
+        <a href="index.html" class="mobile-link active transition-link">Journal</a>
+        <a href="about.html" class="mobile-link transition-link">Story</a>
+        <a href="services.html" class="mobile-link transition-link">Expertise</a>
+        <a href="contact.html" class="mobile-link transition-link">Contact</a>
+        <div class="mobile-menu-footer"><a href="mailto:hello@nest.com">hello@nest.com</a><span>&bull;</span><a href="#">Instagram</a></div>
+    </div>
+
+    <main id="main-content">
+        <section class="hero">
+            <img src="https://picsum.photos/seed/nesthero7/1920/1200" alt="Luxury interior" class="hero-bg-img" id="hero-bg">
+            <div class="container hero-content">
+                <span class="eyebrow hero-eyebrow">Sanctuary Redefined</span>
+                <h1 class="hero-title">Live in the world's<br>most <span class="accent">beautiful</span> spaces.</h1>
+                <p class="hero-text">Experience a curated collection of architectural homes, cozy cabins, and urban lofts designed for the creative spirit.</p>
+                <div class="hero-ctas">
+                    <a href="services.html" class="btn btn-primary transition-link">Explore Collection <span class="arrow">&rarr;</span></a>
+                    <a href="about.html" class="btn btn-ghost transition-link">Our Story</a>
+                </div>
+                <div class="hero-badges">
+                    <div class="hero-badge"><div class="hero-badge-num" data-count="1200" data-suffix="+">0</div><div class="hero-badge-label">Verified Homes</div></div>
+                    <div class="hero-badge"><div class="hero-badge-num" data-count="50" data-suffix="+">0</div><div class="hero-badge-label">Countries</div></div>
+                    <div class="hero-badge"><div class="hero-badge-num" data-count="98" data-suffix="%">0</div><div class="hero-badge-label">Satisfaction</div></div>
+                </div>
+            </div>
+            <div class="scroll-indicator"><div class="mouse"><div class="wheel"></div></div></div>
+        </section>
+
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-text">Discover Unique Homes &bull;</span><span class="marquee-text">Verified Quality &bull;</span><span class="marquee-text">Global Destinations &bull;</span><span class="marquee-text">Design Led &bull;</span>
+                <span class="marquee-text">Discover Unique Homes &bull;</span><span class="marquee-text">Verified Quality &bull;</span><span class="marquee-text">Global Destinations &bull;</span><span class="marquee-text">Design Led &bull;</span>
+            </div>
+        </div>
+
+        <section class="narrative-section section-padding">
+            <div class="container">
+                <div class="narrative-text reveal">
+                    <span class="quote-mark">&ldquo;</span>
+                    <p>At Nest, we believe that travel is not about the destination, but about the <span class="highlight">feeling</span> of the space you inhabit. We don't simply list rooms; we curate sanctuaries that resonate with the soul of the modern traveler.</p>
+                    <div class="narrative-attribution"><div class="narrative-line"></div><span>The Nest Philosophy</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header reveal"><span class="eyebrow">Why Nest</span><h2>The Nest Standard</h2><p class="text-light">Every home in our collection meets an uncompromising set of criteria before it earns the Nest seal.</p></div>
+                <div class="standards-grid">
+                    <div class="standard-item reveal"><i class="fas fa-award standard-icon"></i><h4>Verified Quality</h4><p class="text-light">Every home is personally inspected by our team to ensure 5-star quality across every detail.</p></div>
+                    <div class="standard-item reveal"><i class="fas fa-paint-brush standard-icon"></i><h4>Design Focused</h4><p class="text-light">We curate for aesthetics. Expect architectural marvels, not generic hotel rooms.</p></div>
+                    <div class="standard-item reveal"><i class="fas fa-hand-holding-heart standard-icon"></i><h4>White Glove Service</h4><p class="text-light">From booking to check-out, our concierge team handles every detail of your stay.</p></div>
+                    <div class="standard-item reveal"><i class="fas fa-leaf standard-icon"></i><h4>Sustainable Stays</h4><p class="text-light">Prioritizing eco-friendly properties and hosts who care about the planet.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="curator-edit">
+            <img src="https://picsum.photos/seed/editorial2/1000/1000" alt="Editorial property" class="curator-img reveal" loading="lazy">
+            <div class="curator-content reveal">
+                <span class="eyebrow" style="color: var(--c-primary);">Curator's Edit</span>
+                <h3>The Cliffside Villa, Mallorca</h3>
+                <p>Perched above the Mediterranean, this villa represents the pinnacle of Nest's collection. Featuring raw concrete textures, locally sourced stone, and floor-to-ceiling glass that blurs the line between interior and exterior.</p>
+                <a href="#" class="curator-link">Read the full story <i class="fas fa-arrow-right" style="margin-left: 5px; font-size: 0.8rem;"></i></a>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header reveal"><span class="eyebrow">The Collection</span><h2>Trending This Season</h2></div>
+                <div class="masonry-grid">
+                    <div class="card-wrap col-span-8 row-span-2 tilt-card reveal"><span class="card-tag">Featured</span><img src="https://picsum.photos/seed/arch1/1200/1000" class="card-img" alt="Villa" loading="lazy"><div class="card-info"><h3>The Glass House</h3><div class="card-meta"><span><i class="fas fa-map-marker-alt"></i> Iceland</span> <span>$450/night</span></div></div></div>
+                    <div class="card-wrap col-span-4 row-span-2 tilt-card reveal"><span class="card-tag">New</span><img src="https://picsum.photos/seed/arch2/600/1000" class="card-img" alt="Cabin" loading="lazy"><div class="card-info"><h3>Nordic Retreat</h3><div class="card-meta"><span><i class="fas fa-map-marker-alt"></i> Norway</span> <span>$320/night</span></div></div></div>
+                    <div class="card-wrap col-span-6 tilt-card reveal"><img src="https://picsum.photos/seed/arch3/800/600" class="card-img" alt="Loft" loading="lazy"><div class="card-info"><h3>Industrial Loft</h3><div class="card-meta"><span><i class="fas fa-map-marker-alt"></i> Berlin</span> <span>$210/night</span></div></div></div>
+                    <div class="card-wrap col-span-6 tilt-card reveal"><img src="https://picsum.photos/seed/arch4/800/600" class="card-img" alt="Beach" loading="lazy"><div class="card-info"><h3>Coastal Bungalow</h3><div class="card-meta"><span><i class="fas fa-map-marker-alt"></i> Mexico</span> <span>$380/night</span></div></div></div>
+                </div>
+                <div style="text-align: center; margin-top: 4rem;" class="reveal"><a href="services.html" class="btn btn-outline transition-link">View All Properties <span class="arrow">&rarr;</span></a></div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-white">
+            <div class="container">
+                <div class="section-header reveal" style="text-align:center; margin-left:auto; margin-right:auto;"><span class="eyebrow">Guest Voices</span><h2>What They're Saying</h2></div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card reveal"><i class="fas fa-quote-right quote-icon"></i><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-quote">"Staying at the Glass House in Iceland was a life-altering experience. Nest's attention to detail made every moment feel curated just for us."</p><div class="testimonial-author"><img src="https://picsum.photos/seed/person1/100/100" alt="Sarah" class="testimonial-avatar" loading="lazy"><div><div class="testimonial-name">Sarah Lindqvist</div><div class="testimonial-role">Creative Director, Stockholm</div></div></div></div>
+                    <div class="testimonial-card reveal"><i class="fas fa-quote-right quote-icon"></i><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-quote">"I've used every platform out there. Nothing compares to the quality and curation of Nest. It's like having a design-savvy friend in every city."</p><div class="testimonial-author"><img src="https://picsum.photos/seed/person2/100/100" alt="Marcus" class="testimonial-avatar" loading="lazy"><div><div class="testimonial-name">Marcus Chen</div><div class="testimonial-role">Architect, Tokyo</div></div></div></div>
+                    <div class="testimonial-card reveal"><i class="fas fa-quote-right quote-icon"></i><div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="testimonial-quote">"The concierge service alone is worth it. They arranged a private chef and a sunset sail—moments we'll treasure forever."</p><div class="testimonial-author"><img src="https://picsum.photos/seed/person3/100/100" alt="Elena" class="testimonial-avatar" loading="lazy"><div><div class="testimonial-name">Elena Rossi</div><div class="testimonial-role">Photographer, Milan</div></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <div class="container cta-banner-content">
+                <span class="eyebrow" style="color: var(--c-primary);">Ready to Stay Differently?</span>
+                <h2>Your next sanctuary is <span class="serif" style="color:var(--c-primary);">waiting</span></h2>
+                <p>Join thousands of discerning travelers who've discovered the art of staying well.</p>
+                <a href="contact.html" class="btn btn-primary transition-link" style="background: var(--c-primary);">Start Your Journey <span class="arrow">&rarr;</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div><a href="index.html" class="footer-logo transition-link">Nest.</a><p>Crafting immersive travel experiences for the modern wanderer. Curating beauty, one stay at a time.</p><div class="footer-socials"><a href="#" class="footer-social-icon"><i class="fab fa-instagram"></i></a><a href="#" class="footer-social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="footer-social-icon"><i class="fab fa-pinterest"></i></a></div></div>
+                <div><h4 class="footer-heading">Explore</h4><a href="index.html" class="footer-link transition-link">Journal</a><a href="about.html" class="footer-link transition-link">Story</a><a href="services.html" class="footer-link transition-link">Services</a></div>
+                <div><h4 class="footer-heading">Company</h4><a href="#" class="footer-link">Careers</a><a href="#" class="footer-link">Press</a><a href="#" class="footer-link">Legal</a></div>
+                <div><h4 class="footer-heading">Newsletter</h4><p style="margin-bottom: 1.2rem; font-size: 0.95rem; line-height: 1.6;">Join our curated list for design inspiration and travel deals.</p><div class="newsletter-wrap"><input type="email" placeholder="Email Address" class="newsletter-input"><button class="newsletter-btn">Join</button></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Nest Inc.</p><p>Digitally woven warmth by <a href="https://dw33py.netlify.app" target="_blank" style="color: var(--c-primary);">Dw33pY</a></p></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+    <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
