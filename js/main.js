@@ -116,6 +116,17 @@ function initAnimations() {
             }
         });
     });
+
+    // --- IMAGE UNVEIL ---
+    const imgReveals = gsap.utils.toArray('.img-reveal-wrap');
+    imgReveals.forEach(wrap => {
+        ScrollTrigger.create({
+            trigger: wrap,
+            start: "top 85%",
+            once: true,
+            onEnter: () => wrap.classList.add('revealed')
+        });
+    });
 }
 
 // --- CUSTOM CURSOR ---
@@ -171,22 +182,47 @@ const burger = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobile-menu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 
-if (burger && mobileMenu) {
+// Function to OPEN menu
+function openMobileMenu() {
+    if (!mobileMenu || mobileMenu.classList.contains('active')) return;
+    toggleScrollLock(true);
+    mobileMenu.classList.add('active');
+    burger.classList.add('active');
+    gsap.fromTo(mobileLinks, 
+        { opacity: 0, y: 30 }, 
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, delay: 0.3, ease: "power2.out" }
+    );
+}
+
+// Function to CLOSE menu
+function closeMobileMenu() {
+    if (!mobileMenu || !mobileMenu.classList.contains('active')) return;
+    toggleScrollLock(false);
+    mobileMenu.classList.remove('active');
+    burger.classList.remove('active');
+    gsap.to(mobileLinks, { 
+        opacity: 0, y: 30, stagger: 0.05, duration: 0.3, ease: "power2.in", 
+        onComplete: () => mobileLinks.forEach(l => { l.style.opacity = ''; l.style.transform = ''; }) 
+    });
+}
+
+// Toggle menu on burger click
+if (burger) {
     burger.addEventListener('click', () => {
-        const isActive = mobileMenu.classList.contains('active');
-        if (!isActive) {
-            toggleScrollLock(true);
-            mobileMenu.classList.add('active');
-            burger.classList.add('active');
-            gsap.fromTo(mobileLinks, { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5, delay: 0.3, ease: "power2.out" });
+        if (mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
         } else {
-            toggleScrollLock(false);
-            mobileMenu.classList.remove('active');
-            burger.classList.remove('active');
-            gsap.to(mobileLinks, { opacity: 0, y: 30, stagger: 0.05, duration: 0.3, ease: "power2.in", onComplete: () => mobileLinks.forEach(l => { l.style.opacity = ''; l.style.transform = ''; }) });
+            openMobileMenu();
         }
     });
 }
+
+// Close menu when a mobile link is clicked (so it doesn't stay open during page transition)
+mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        closeMobileMenu();
+    });
+});
 
 // --- BACK TO TOP ---
 const backToTop = document.getElementById('backToTop');
@@ -282,3 +318,152 @@ newsletterBtns.forEach(btn => {
         }
     });
 });
+
+// --- MAGNETIC BUTTONS ---
+const magneticElements = document.querySelectorAll('.btn, .nav-logo, .back-to-top, .whatsapp-btn');
+magneticElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        // Move element slightly towards cursor
+        gsap.to(el, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: "power2.out" });
+    });
+    el.addEventListener('mouseleave', () => {
+        // Snap back to center
+        gsap.to(el, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.3)" });
+    });
+});
+
+// --- TEXT SCRAMBLE EFFECT ---
+class TextScramble {
+    constructor(el) {
+        this.el = el;
+        this.chars = '!<>-_\\/[]{}—=+*^?#________';
+        this.update = this.update.bind(this);
+    }
+    setText(newText) {
+        const oldText = this.el.innerText;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => this.resolve = resolve);
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+            const from = oldText[i] || '';
+            const to = newText[i] || '';
+            const start = Math.floor(Math.random() * 40);
+            const end = start + Math.floor(Math.random() * 40);
+            this.queue.push({ from, to, start, end });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+    }
+    update() {
+        let output = '';
+        let complete = 0;
+        for (let i = 0, n = this.queue.length; i < n; i++) {
+            let { from, to, start, end, char } = this.queue[i];
+            if (this.frame >= end) { complete++; output += to; } 
+            else if (this.frame >= start) {
+                if (!char || Math.random() < 0.28) {
+                    char = this.chars[Math.floor(Math.random() * this.chars.length)];
+                    this.queue[i].char = char;
+                }
+                output += `<span style="color:var(--c-primary)">${char}</span>`;
+            } else { output += from; }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) { this.resolve(); } 
+        else { this.frameRequest = requestAnimationFrame(this.update); this.frame++; }
+    }
+}
+
+// Apply to nav links
+document.querySelectorAll('.nav-link').forEach(link => {
+    const scramble = new TextScramble(link);
+    const originalText = link.innerText;
+    link.addEventListener('mouseenter', () => scramble.setText(originalText));
+});
+
+// --- MASONRY FILTER ---
+const filterBtns = document.querySelectorAll('.filter-btn');
+const filterCards = document.querySelectorAll('.card-wrap[data-category]');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        
+        filterCards.forEach(card => {
+            if(filter === 'all' || card.getAttribute('data-category') === filter) {
+                gsap.to(card, { opacity: 1, scale: 1, duration: 0.4, display: 'block' });
+            } else {
+                gsap.to(card, { opacity: 0, scale: 0.9, duration: 0.4, onComplete: () => card.style.display = 'none' });
+            }
+        });
+    });
+});
+
+// =========================================
+// SKELETON LOADER (Lazy Image Fade-in)
+// =========================================
+const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+lazyImages.forEach(img => {
+    // If the image is already cached/loaded immediately
+    if (img.complete) {
+        img.classList.add('loaded');
+    } else {
+        // When it finishes loading, add the class to fade it in
+        img.addEventListener('load', () => img.classList.add('loaded'));
+    }
+});
+
+
+// =========================================
+// PARALLAX DEPTH (Scroll-based movement)
+// =========================================
+
+// Stats Bar: Moves up slightly slower than the scroll
+if (document.querySelector('.stats-bar')) {
+    gsap.to('.stats-bar', {
+        y: -40, ease: "none",
+        scrollTrigger: { 
+            trigger: '.stats-bar', 
+            start: "top bottom", 
+            end: "bottom top", 
+            scrub: true 
+        }
+    });
+}
+
+// Testimonial Cards: Staggered depth (each card moves at a slightly different rate)
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+if (testimonialCards.length > 0) {
+    testimonialCards.forEach((card, i) => {
+        gsap.to(card, {
+            y: -30 - (i * 15), // 1st card moves -30px, 2nd -45px, 3rd -60px
+            ease: "none",
+            scrollTrigger: { 
+                trigger: card, 
+                start: "top bottom", 
+                end: "bottom top", 
+                scrub: true 
+            }
+        });
+    });
+}
+
+// Services Floating Card: Creates a "floating" depth effect
+if (document.querySelector('.services-floating-card')) {
+    gsap.to('.services-floating-card', {
+        y: -60, ease: "none",
+        scrollTrigger: { 
+            trigger: '.services-img-col', 
+            start: "top bottom", 
+            end: "bottom top", 
+            scrub: true 
+        }
+    });
+}
